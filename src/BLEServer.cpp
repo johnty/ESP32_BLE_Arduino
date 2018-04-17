@@ -221,7 +221,11 @@ void BLEServer::handleGATTServerEvent(
 			m_semaphoreCreateEvt.give();
 			break;
 		} // ESP_GATTS_CREATE_EVT
-
+                case ESP_GATTS_CONGEST_EVT: {
+                        if (m_pServerCallbacks != nullptr) {
+                               m_pServerCallbacks->onCongestion(this);
+                        }
+                }
 
 		// ESP_GATTS_DISCONNECT_EVT
 		//
@@ -348,5 +352,9 @@ void BLEServerCallbacks::onDisconnect(BLEServer* pServer) {
 	ESP_LOGD("BLEServerCallbacks", "Device: %s", BLEDevice::toString().c_str());
 	ESP_LOGD("BLEServerCallbacks", "<< onDisconnect()");
 } // onDisconnect
+
+void BLEServerCallbacks::onCongestion(BLEServer* pServer) {
+        ESP_LOGD("BLEServerCallbacks", "congestion....");
+} // onCongestion
 
 #endif // CONFIG_BT_ENABLED
