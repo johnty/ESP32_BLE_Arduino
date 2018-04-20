@@ -109,7 +109,7 @@ public:
 	 */
 	virtual void onDisconnect(BLEServer* pServer);
 
-        virtual void onCongestion(BLEServer* pServer);
+	virtual void onCongestion(BLEServer* pServer);
 
 }; // BLEServerCallbacks
 

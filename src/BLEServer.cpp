@@ -221,11 +221,12 @@ void BLEServer::handleGATTServerEvent(
 			m_semaphoreCreateEvt.give();
 			break;
 		} // ESP_GATTS_CREATE_EVT
-                case ESP_GATTS_CONGEST_EVT: {
-                        if (m_pServerCallbacks != nullptr) {
-                               m_pServerCallbacks->onCongestion(this);
-                        }
-                }
+		case ESP_GATTS_CONGEST_EVT: {
+			if (m_pServerCallbacks != nullptr) {
+				m_pServerCallbacks->onCongestion(this);
+			}
+			break;
+		}
 
 		// ESP_GATTS_DISCONNECT_EVT
 		//
